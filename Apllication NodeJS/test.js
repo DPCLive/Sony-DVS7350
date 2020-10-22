@@ -24,13 +24,14 @@ function bufToArray(buffer) {
 }
 
 
-const interv = setInterval(Response, 1000);
+const interv = setInterval(Response, 0);
 
 
 function Response(){
 var commands = [];
-    console.log(array);
-    console.log(indexDeLecture)
+    //console.log(array);
+    //console.log(indexDeLecture)
+    if(array.length > 6){
 		switch(array[indexDeLecture]){
             case '0':{
                 switch(array[indexDeLecture+1]){
@@ -201,15 +202,17 @@ var commands = [];
             break;
             default:
                 indexDeLecture++;
-                //clearInterval(interv);
+                //
                 break;
         }
 	
-        
+    }
 	
 }
-
+ 
    function WriteResponse(commands){
-        console.log(Buffer.from(commands.join(''), 'hex'));
+    var d = new Date();
+        console.log(d.getTime(), Buffer.from(commands.join(''), 'hex'));
+        //clearInterval(interv);
         //port.write(testu);
     }
