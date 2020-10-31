@@ -19,39 +19,46 @@ void setup()
 
 void loop() // run over and over
 {
-  readSerialString();
+  //readSerialString();
   printSerialString();
 }
 
+void serialEvent() {
+  int sb;
 
-void readSerialString () {
-    int sb;   
-    if(Serial.available()) { 
-       //Serial.print("reading Serial String: ");     //optional confirmation
-       while (Serial.available()){ 
-          sb = Serial.read();             
-          serInString[serInIndx] = sb;
-          serInIndx++;
-          //serialWrite(sb);                        //optional confirmation
-       }
-       //Serial.println();
-    }  
+  if (Serial.available()) {
+    while (Serial.available()) {
+
+    }
+  }
+}
+  void readSerialString () {
+
+    //Serial.print("reading Serial String: ");     //optional confirmation
+    while (Serial.available()) {
+      sb = Serial.read();
+      serInString[serInIndx] = sb;
+      serInIndx++;
+      //serialWrite(sb);                        //optional confirmation
+    }
+    //Serial.println();
+  }
 }
 
 
 void printSerialString() {
-   if( serInIndx > 0) {
+  if ( serInIndx > 0) {
 
-      for(serOutIndx=0; serOutIndx < serInIndx; serOutIndx++) {
-          Serial.print(serInString[serOutIndx]);    //print out the byte at the specified index
-          //serInString[serOutIndx] = "";            //optional: flush out the content
-          commands(serOutIndx);
-      }        
-      //reset all the functions to be able to fill the string back with content
-      serOutIndx = 0;
-      serInIndx  = 0;
-      Serial.println();
-   }
+    for (serOutIndx = 0; serOutIndx < serInIndx; serOutIndx++) {
+      Serial.print(serInString[serOutIndx]);    //print out the byte at the specified index
+      //serInString[serOutIndx] = "";            //optional: flush out the content
+      commands(serOutIndx);
+    }
+    //reset all the functions to be able to fill the string back with content
+    serOutIndx = 0;
+    serInIndx  = 0;
+    Serial.println();
+  }
 
 }
 void commands(int serOutIndx) {
