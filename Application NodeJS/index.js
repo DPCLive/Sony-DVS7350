@@ -11,6 +11,8 @@ const port = new SerialPort('COM10', {
     stopBits: 1, 
     flowControl: false
 })
+
+
 const parser = new Readline()
 port.pipe(parser)
 
@@ -228,5 +230,5 @@ var commands = [];
     var d = new Date();
         console.log(d.getTime(), Buffer.from(commands.join(''), 'hex'));
         //clearInterval(interv);
-        //port.write(testu);
+        port.write(commands.join(''));
     }
