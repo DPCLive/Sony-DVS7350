@@ -45,7 +45,7 @@ void printSerialString() {
       for(serOutIndx=0; serOutIndx < serInIndx; serOutIndx++) {
           Serial.print(serInString[serOutIndx]);    //print out the byte at the specified index
           //serInString[serOutIndx] = "";            //optional: flush out the content
-          traitement(serOutIndx);
+          commands(serOutIndx);
       }        
       //reset all the functions to be able to fill the string back with content
       serOutIndx = 0;
@@ -54,11 +54,11 @@ void printSerialString() {
    }
 
 }
-void traitement(int serOutIndx) {
+void commands(int serOutIndx) {
   switch (serInString[serOutIndx]) {
-    case '0': {
+    case 0x00: {
         switch (serInString[serOutIndx + 1]) {
-          case '30': {
+          case 0x30: {
 
             }
             break;
